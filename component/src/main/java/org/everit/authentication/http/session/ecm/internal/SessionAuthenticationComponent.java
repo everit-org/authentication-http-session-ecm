@@ -53,10 +53,21 @@ import aQute.bnd.annotation.headers.ProvideCapability;
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
         defaultValue = SessionAuthenticationConstants.DEFAULT_SERVICE_DESCRIPTION,
-        priority = 1, label = "Service Description",
+        priority = SessionAuthenticationComponent.P01_SERVICE_DESCRITION,
+        label = "Service Description",
         description = "The description of this component configuration. It is used to easily "
             + "identify the service registered by this component.") })
 public class SessionAuthenticationComponent {
+
+  public static final int P01_SERVICE_DESCRITION = 1;
+
+  public static final int P02_SESSION_ATTR_NAME_AUTHENTICATED_RESOURCE_ID = 2;
+
+  public static final int P03_LOGGED_OUT_URL = 3;
+
+  public static final int P04_REQ_PARAM_NAME_LOGGED_OUT_URL = 4;
+
+  public static final int P05_AUTHENTICATION_PROPAGATOR = 5;
 
   private AuthenticationPropagator authenticationPropagator;
 
@@ -99,7 +110,7 @@ public class SessionAuthenticationComponent {
 
   @ServiceRef(attributeId = SessionAuthenticationConstants.ATT_AUTHENTICATION_PROPAGATOR,
       defaultValue = "",
-      attributePriority = SessionAuthenticationConstants.PRIORITY_05_AUTHENTICATION_PROPAGATOR,
+      attributePriority = P05_AUTHENTICATION_PROPAGATOR,
       label = "Authentication Propagator OSGi filter",
       description = "OSGi Service filter expression for AuthenticationPropagator instance.")
   public void setAuthenticationPropagator(final AuthenticationPropagator authenticationPropagator) {
@@ -108,7 +119,7 @@ public class SessionAuthenticationComponent {
 
   @StringAttribute(attributeId = SessionAuthenticationConstants.ATTR_LOGGED_OUT_URL,
       defaultValue = SessionAuthenticationConstants.DEFAULT_LOGGED_OUT_URL,
-      priority = SessionAuthenticationConstants.PRIORITY_03_LOGGED_OUT_URL,
+      priority = P03_LOGGED_OUT_URL,
       label = "Logged out URL",
       description = "The URL where the browser will be redirected in case of logout.")
   public void setLoggedOutUrl(final String loggedOutUrl) {
@@ -117,7 +128,7 @@ public class SessionAuthenticationComponent {
 
   @StringAttribute(attributeId = SessionAuthenticationConstants.ATTR_REQ_PARAM_NAME_LOGGED_OUT_URL,
       defaultValue = SessionAuthenticationConstants.DEFAULT_REQ_PARAM_NAME_LOGGED_OUT_URL,
-      priority = SessionAuthenticationConstants.PRIORITY_04_REQ_PARAM_NAME_LOGGED_OUT_URL,
+      priority = P04_REQ_PARAM_NAME_LOGGED_OUT_URL,
       label = "Logged out URL request parameter name",
       description = "The name of the request parameter that overrides the \"Logged out URL\" "
           + "configuration if present in the HTTP request.")
@@ -128,7 +139,7 @@ public class SessionAuthenticationComponent {
   @StringAttribute(
       attributeId = SessionAuthenticationConstants.ATTR_SESSION_ATTR_NAME_AUTHENTICATED_RESOURCE_ID,
       defaultValue = SessionAuthenticationConstants.DEFAULT_SESSION_ATTR_NAME_AUTHENTICATED_RESOURCE_ID, // CS_DISABLE_LINE_LENGTH
-      priority = SessionAuthenticationConstants.PRIORITY_02_SESSION_ATTR_NAME_AUTHENTICATED_RESOURCE_ID, // CS_DISABLE_LINE_LENGTH
+      priority = P02_SESSION_ATTR_NAME_AUTHENTICATED_RESOURCE_ID,
       label = "Authenticated Resource ID session attribute name",
       description = "The name of the session attribute that stores the Resource ID of the "
           + "authenticated user.")

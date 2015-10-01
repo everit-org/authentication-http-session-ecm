@@ -348,17 +348,17 @@
     <!-- Dependencies needed by QueryDSL -->
     <dependency>
       <groupId>org.everit.persistence</groupId>
-      <artifactId>org.everit.persistence.querydsl.sqltemplates.osgi.ecm</artifactId>
+      <artifactId>org.everit.persistence.querydsl.sqltemplates.ecm</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.everit.persistence</groupId>
-      <artifactId>org.everit.persistence.querydsl.configuration.osgi.ecm</artifactId>
+      <artifactId>org.everit.persistence.querydsl.configuration.ecm</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.everit.persistence</groupId>
-      <artifactId>org.everit.persistence.querydsl.support.ri.osgi.ecm</artifactId>
+      <artifactId>org.everit.persistence.querydsl.support.ri.ecm</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
