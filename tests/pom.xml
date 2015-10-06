@@ -126,15 +126,15 @@
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>org.everit.osgi</groupId>
-      <artifactId>org.everit.osgi.cache.noop</artifactId>
-      <version>2.0.0</version>
+      <groupId>org.everit.cache</groupId>
+      <artifactId>org.everit.cache.noop</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
 
     <dependency>
       <groupId>org.everit.resource</groupId>
       <artifactId>org.everit.resource.ri.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     
      <!-- org.apache.httpcomponents for plain http testing -->
@@ -196,18 +196,6 @@
     
     <!-- Basic OSGi to tests -->
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
-      <version>5.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
-      <version>5.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.everit.osgi.dev</groupId>
       <artifactId>org.everit.osgi.dev.testrunner.junit4</artifactId>
       <version>3.0.5</version>
@@ -268,7 +256,7 @@
     <dependency>
       <groupId>org.everit.transaction</groupId>
       <artifactId>org.everit.transaction.propagator.jta.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     
     <!-- Jetty with Http Service -->
@@ -282,22 +270,7 @@
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.webconsole</artifactId>
-      <version>4.2.12</version>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.component</artifactId>
-      <version>1.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.util.promise</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.util.function</artifactId>
-      <version>1.0.0</version>
+      <version>4.2.14</version>
     </dependency>
     <dependency>
       <groupId>commons-fileupload</groupId>
@@ -329,12 +302,12 @@
     <dependency>
       <groupId>org.everit.persistence</groupId>
       <artifactId>org.everit.persistence.jdbc.commons.dbcp.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.everit.persistence</groupId>
       <artifactId>org.everit.persistence.liquibase.datasource.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     
     <!-- PostgreSQL -->
@@ -365,17 +338,17 @@
     <dependency>
       <groupId>org.everit.persistence</groupId>
       <artifactId>org.everit.persistence.querydsl.sqltemplates.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.everit.persistence</groupId>
       <artifactId>org.everit.persistence.querydsl.configuration.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.everit.persistence</groupId>
       <artifactId>org.everit.persistence.querydsl.support.ri.ecm</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.servicemix.bundles</groupId>
