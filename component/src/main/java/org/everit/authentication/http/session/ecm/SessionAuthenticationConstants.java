@@ -39,16 +39,6 @@ public final class SessionAuthenticationConstants {
   public static final String DEFAULT_SESSION_ATTR_NAME_AUTHENTICATED_RESOURCE_ID =
       "authenticated.resource.id";
 
-  public static final int PRIORITY_01_SERVICE_DESCRITION = 1;
-
-  public static final int PRIORITY_02_SESSION_ATTR_NAME_AUTHENTICATED_RESOURCE_ID = 2;
-
-  public static final int PRIORITY_03_LOGGED_OUT_URL = 3;
-
-  public static final int PRIORITY_04_REQ_PARAM_NAME_LOGGED_OUT_URL = 4;
-
-  public static final int PRIORITY_05_AUTHENTICATION_PROPAGATOR = 5;
-
   /**
    * The service factory PID of the Session Authentication component.
    */
