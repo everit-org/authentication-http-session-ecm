@@ -265,6 +265,11 @@
       <artifactId>org.everit.osgi.jetty.boot</artifactId>
       <version>1.0.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.everit.jetty</groupId>
+      <artifactId>org.everit.jetty.server.ecm</artifactId>
+      <version>1.0.0</version>
+    </dependency>
 
     <!-- Felix webconsole with dependencies -->
     <dependency>

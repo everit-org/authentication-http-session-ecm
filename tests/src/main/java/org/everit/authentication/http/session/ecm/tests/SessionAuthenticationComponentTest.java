@@ -20,8 +20,6 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.Map;
 
-import javax.servlet.Filter;
-import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
@@ -42,16 +40,13 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HttpContext;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.FilterHolder;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
 import org.everit.authentication.context.AuthenticationContext;
 import org.everit.authentication.http.session.ecm.SessionAuthenticationConstants;
+import org.everit.osgi.dev.testrunner.TestDuringDevelopment;
 import org.everit.osgi.dev.testrunner.TestRunnerConstants;
 import org.everit.osgi.ecm.annotation.Activate;
 import org.everit.osgi.ecm.annotation.Component;
 import org.everit.osgi.ecm.annotation.ConfigurationPolicy;
-import org.everit.osgi.ecm.annotation.Deactivate;
 import org.everit.osgi.ecm.annotation.Service;
 import org.everit.osgi.ecm.annotation.ServiceRef;
 import org.everit.osgi.ecm.annotation.attribute.StringAttribute;
@@ -66,8 +61,7 @@ import aQute.bnd.annotation.headers.ProvideCapability;
 /**
  * Test for Session Authentication Component.
  */
-@Component(componentId = "SessionAuthenticationTest",
-    configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Component(configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @ProvideCapability(ns = ECMExtenderConstants.CAPABILITY_NS_COMPONENT,
     value = ECMExtenderConstants.CAPABILITY_ATTR_CLASS + "=${@class}")
 @StringAttributes({
@@ -88,17 +82,11 @@ public class SessionAuthenticationComponentTest {
 
   private String helloUrl;
 
-  private Servlet helloWorldServlet;
-
   private String loggedOutUrl;
 
   private String logoutUrl;
 
-  private Filter sessionAuthenticationFilter;
-
-  private Servlet sessionLogoutServlet;
-
-  private Server testServer;
+  private Server server;
 
   /**
    * Component activator method.
@@ -106,37 +94,12 @@ public class SessionAuthenticationComponentTest {
   @Activate
   public void activate(final BundleContext context, final Map<String, Object> componentProperties)
       throws Exception {
-    testServer = new Server(0);
-    ServletContextHandler servletContextHandler = new ServletContextHandler(
-        ServletContextHandler.SESSIONS);
-    testServer.setHandler(servletContextHandler);
-
-    servletContextHandler.addServlet(
-        new ServletHolder("helloWorldServlet", helloWorldServlet), HELLO_SERVLET_ALIAS);
-    servletContextHandler.addFilter(
-        new FilterHolder(sessionAuthenticationFilter), "/*", null);
-    servletContextHandler.addServlet(
-        new ServletHolder("sessionLogoutServlet", sessionLogoutServlet), LOGOUT_SERVLET_ALIAS);
-
-    testServer.start();
-
-    String testServerURI = testServer.getURI().toString();
+    String testServerURI = server.getURI().toString();
     String testServerURL = testServerURI.substring(0, testServerURI.length() - 1);
 
     helloUrl = testServerURL + HELLO_SERVLET_ALIAS;
     logoutUrl = testServerURL + LOGOUT_SERVLET_ALIAS;
     loggedOutUrl = testServerURL + SessionAuthenticationConstants.DEFAULT_LOGGED_OUT_URL;
-  }
-
-  /**
-   * component deactivate method.
-   */
-  @Deactivate
-  public void deactivate() throws Exception {
-    if (testServer != null) {
-      testServer.stop();
-      testServer.destroy();
-    }
   }
 
   private long hello(final HttpContext httpContext, final long expectedResourceId)
@@ -193,21 +156,12 @@ public class SessionAuthenticationComponentTest {
   }
 
   @ServiceRef(defaultValue = "")
-  public void setHelloWorldServlet(final Servlet helloWorldServlet) {
-    this.helloWorldServlet = helloWorldServlet;
-  }
-
-  @ServiceRef(defaultValue = "")
-  public void setSessionAuthenticationFilter(final Filter sessionAuthenticationFilter) {
-    this.sessionAuthenticationFilter = sessionAuthenticationFilter;
-  }
-
-  @ServiceRef(defaultValue = "")
-  public void setSessionLogoutServlet(final Servlet sessionLogoutServlet) {
-    this.sessionLogoutServlet = sessionLogoutServlet;
+  public void setServer(final Server server) {
+    this.server = server;
   }
 
   @Test
+  @TestDuringDevelopment
   public void testAccessHelloPage() throws Exception {
     CookieStore cookieStore = new BasicCookieStore();
     HttpContext httpContext = new BasicHttpContext();

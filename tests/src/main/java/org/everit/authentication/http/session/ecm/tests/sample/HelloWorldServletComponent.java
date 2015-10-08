@@ -39,11 +39,10 @@ import aQute.bnd.annotation.headers.ProvideCapability;
 /**
  * Servlet for Hello World page.
  */
-@Component(componentId = "HelloWorldServletComponent",
-    configurationPolicy = ConfigurationPolicy.FACTORY)
+@Component(configurationPolicy = ConfigurationPolicy.OPTIONAL)
 @ProvideCapability(ns = ECMExtenderConstants.CAPABILITY_NS_COMPONENT,
     value = ECMExtenderConstants.CAPABILITY_ATTR_CLASS + "=${@class}")
-@Service(value = Servlet.class)
+@Service(Servlet.class)
 public class HelloWorldServletComponent extends HttpServlet {
 
   private AuthenticationContext authenticationContext;
