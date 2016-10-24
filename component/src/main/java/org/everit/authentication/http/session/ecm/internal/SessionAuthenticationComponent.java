@@ -30,27 +30,25 @@ import org.everit.osgi.ecm.annotation.Component;
 import org.everit.osgi.ecm.annotation.ConfigurationPolicy;
 import org.everit.osgi.ecm.annotation.Deactivate;
 import org.everit.osgi.ecm.annotation.ManualService;
+import org.everit.osgi.ecm.annotation.ManualServices;
 import org.everit.osgi.ecm.annotation.ServiceRef;
 import org.everit.osgi.ecm.annotation.attribute.StringAttribute;
 import org.everit.osgi.ecm.annotation.attribute.StringAttributes;
 import org.everit.osgi.ecm.component.ComponentContext;
-import org.everit.osgi.ecm.extender.ECMExtenderConstants;
+import org.everit.osgi.ecm.extender.ExtendComponent;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
-
-import aQute.bnd.annotation.headers.ProvideCapability;
 
 /**
  * ECM component for {@link Servlet}, {@link Filter} and {@link AuthenticationSessionAttributeNames}
  * interface based on {@link SessionAuthentication}.
  */
+@ExtendComponent
 @Component(componentId = SessionAuthenticationConstants.SERVICE_FACTORYPID_SESSION_AUTHENTICATION,
     configurationPolicy = ConfigurationPolicy.FACTORY,
     label = "Everit HTTP Session Authentication Component",
     description = "A component that implements HTTP session based authentication mechanism "
         + "as a Servlet Filter and supports logout.")
-@ProvideCapability(ns = ECMExtenderConstants.CAPABILITY_NS_COMPONENT,
-    value = ECMExtenderConstants.CAPABILITY_ATTR_CLASS + "=${@class}")
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
         defaultValue = SessionAuthenticationConstants.DEFAULT_SERVICE_DESCRIPTION,
@@ -58,7 +56,8 @@ import aQute.bnd.annotation.headers.ProvideCapability;
         label = "Service Description",
         description = "The description of this component configuration. It is used to easily "
             + "identify the service registered by this component.") })
-@ManualService({ Servlet.class, Filter.class, AuthenticationSessionAttributeNames.class })
+@ManualServices(@ManualService({ Servlet.class, Filter.class,
+    AuthenticationSessionAttributeNames.class }))
 public class SessionAuthenticationComponent {
 
   public static final int P01_SERVICE_DESCRITION = 1;

@@ -31,17 +31,14 @@ import org.everit.osgi.ecm.annotation.Component;
 import org.everit.osgi.ecm.annotation.ConfigurationPolicy;
 import org.everit.osgi.ecm.annotation.Service;
 import org.everit.osgi.ecm.annotation.ServiceRef;
-import org.everit.osgi.ecm.extender.ECMExtenderConstants;
+import org.everit.osgi.ecm.extender.ExtendComponent;
 import org.everit.web.servlet.HttpServlet;
-
-import aQute.bnd.annotation.headers.ProvideCapability;
 
 /**
  * Servlet for Hello World page.
  */
+@ExtendComponent
 @Component(configurationPolicy = ConfigurationPolicy.OPTIONAL)
-@ProvideCapability(ns = ECMExtenderConstants.CAPABILITY_NS_COMPONENT,
-    value = ECMExtenderConstants.CAPABILITY_ATTR_CLASS + "=${@class}")
 @Service(Servlet.class)
 public class HelloWorldServletComponent extends HttpServlet {
 
